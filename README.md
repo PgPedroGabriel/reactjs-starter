@@ -2,9 +2,22 @@ This project is a start React App with commons things i'll apply on my all React
 
 ## What is this things?
 
+pack of things:
+
+### Plugins and Components
+
+- redux
+- redux saga
+- immer
+- prop-types
+- styled-components
+- axios
+- json-server (developer)
+
+### Code styling
+
 - ESLINT with arbnb config
-- prettier for beautiful codes
-- yarn
+- prettier
 - babel
 - editorconfig
 
