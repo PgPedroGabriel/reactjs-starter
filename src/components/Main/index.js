@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as ListActions from '../../store/modules/List/actions';
-import { Text, Container, List } from './styles';
+import { Text, Container, List, Button } from './styles';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ export default function Main() {
           </li>
         ))}
       </List>
+      <Link to="login">
+        <Button>Login </Button>
+      </Link>
     </Container>
   );
 }

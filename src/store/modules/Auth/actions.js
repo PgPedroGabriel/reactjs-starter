@@ -8,51 +8,50 @@ export const types = {
   AUTH_CHECK_TIMEOUT: '@auth/AUTH_CHECK_TIMEOUT',
 };
 
-export function auth(email, password, signin) {
+export function auth(email, password) {
   return {
-      type: types.AUTH_USER,
-      email: email,
-      password: password,
-      signin: signin
-  }
-};
+    type: types.AUTH_USER,
+    email,
+    password,
+  };
+}
 
 export function authStart() {
   return {
-      type: types.AUTH_START
-  }
-};
+    type: types.AUTH_START,
+  };
+}
 
 export function authSuccess(token, userId) {
   return {
-      type: types.AUTH_SUCCESS,
-      token: token,
-      userId: userId
-  }
-};
+    type: types.AUTH_SUCCESS,
+    token,
+    userId,
+  };
+}
 
 export function authFail(error) {
-return {
+  return {
     type: types.AUTH_FAIL,
-    error: error
+    error,
+  };
 }
-};
 
 export function logout() {
   return {
-      type: types.AUTH_INITIATE_LOGOUT
-  }
-};
+    type: types.AUTH_INITIATE_LOGOUT,
+  };
+}
 
 export function logoutSucceed() {
   return {
-      type: types.AUTH_LOGOUT
-  }
-};
+    type: types.AUTH_LOGOUT,
+  };
+}
 
 export function checkAuthTimeout(expirationTime) {
   return {
-      type: types.AUTH_CHECK_TIMEOUT,
-      expirationTime: expirationTime
-  }
-};
+    type: types.AUTH_CHECK_TIMEOUT,
+    expirationTime,
+  };
+}
