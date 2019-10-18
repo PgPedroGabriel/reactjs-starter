@@ -12,6 +12,7 @@ export default createGlobalStyle`
   }
 
   body {
+    background: #005d91;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -21,5 +22,11 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  #root {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 50px 20px;
   }
 `;

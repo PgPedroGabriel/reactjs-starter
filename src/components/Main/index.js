@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as ListActions from '../../store/modules/List/actions';
-import { Text } from './styles';
+import { Text, Container, List } from './styles';
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -13,16 +13,16 @@ export default function Main() {
   const { data, error, loading } = useSelector(state => state.list);
 
   return (
-    <>
+    <Container>
       {loading ? <p>Carregando...</p> : ''}
       {error ? <p>Ocorreu uma falha ao se conectar com o servidor</p> : ''}
-      <ul>
+      <List>
         {data.map(l => (
           <li key={l.id}>
             <Text>{l.name}</Text>
           </li>
         ))}
-      </ul>
-    </>
+      </List>
+    </Container>
   );
 }
