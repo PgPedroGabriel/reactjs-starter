@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaSpinner, FaStopCircle } from 'react-icons/fa';
 import * as AuthActions from '../../store/modules/Auth/actions';
+import history from '../../services/history';
 import {
   Container,
   Header,
@@ -25,8 +26,9 @@ export default function Auth() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('effected');
-    console.log(token, userId);
+    if (userId) {
+      history.push('/');
+    }
   }, [token, userId]);
 
   function handleSubmit(e) {

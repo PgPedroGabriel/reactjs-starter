@@ -13,8 +13,11 @@ const INITIAL_STATE = {
 export default function auth(state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.AUTH_START:
+    case types.AUTH_INITIATE_LOGOUT:
       return produce(state, draft => {
         draft.loading = true;
+        draft.error = false;
+        draft.errorMessage = null;
         return draft;
       });
     case types.AUTH_SUCCESS:
@@ -30,6 +33,12 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         draft.error = true;
         draft.errorMessage = action.error;
+      });
+    case types.AUTH_LOGOUT:
+      return produce(state, draft => {
+        draft.loading = false;
+        draft.userId = null;
+        draft.token = null;
       });
     default:
       return state;

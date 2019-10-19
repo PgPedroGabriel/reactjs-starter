@@ -1,5 +1,11 @@
-import { all, takeLatest, put, call } from 'redux-saga/effects';
-import { types, authStart, authFail, authSuccess } from './actions';
+import { all, select, takeLatest, put, call } from 'redux-saga/effects';
+import {
+  types,
+  authStart,
+  authFail,
+  authSuccess,
+  logoutSucceed,
+} from './actions';
 import { api } from '../../../services/api';
 
 function* startAuth({ email, password }) {
@@ -16,10 +22,12 @@ function* startAuth({ email, password }) {
     );
 
     const { token, userId } = request.data ? request.data[0] : null;
-    console.log(request);
+
     if (!token) {
       yield put(authFail('Email e senha inválidos'));
     } else {
+      yield localStorage.setItem('token', token);
+      yield localStorage.setItem('userId', userId);
       yield put(authSuccess(token, userId));
     }
   } catch (error) {
@@ -27,4 +35,18 @@ function* startAuth({ email, password }) {
   }
 }
 
-export default all([takeLatest(types.AUTH_USER, startAuth)]);
+function* initLogout() {
+  const userId = yield select(state => state.userId);
+  if (!userId) {
+    yield localStorage.removeItem('token');
+    yield localStorage.removeItem('userId');
+    yield put(logoutSucceed());
+  } else {
+    yield put(authFail('Você não está logado'));
+  }
+}
+
+export default all([
+  takeLatest(types.AUTH_USER, startAuth),
+  takeLatest(types.AUTH_INITIATE_LOGOUT, initLogout),
+]);
