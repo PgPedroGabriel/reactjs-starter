@@ -52,15 +52,21 @@ export const FormGroup = styled.div`
   }
 `;
 
-export const ButtonSubmit = styled.button.attrs({
+export const ButtonSubmit = styled.button.attrs(props => ({
   type: 'submit',
-})`
+  disabled: props.loading === 'true',
+}))`
   margin-top: 20px;
   background: #00a5fe;
   color: #fff;
   font-weight: bold;
   border: 1px solid;
   padding: 10px 90px;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
 
 export const Loading = styled.div`

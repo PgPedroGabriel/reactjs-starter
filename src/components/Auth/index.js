@@ -75,7 +75,7 @@ export default function Auth() {
           />
         </FormGroup>
         <FormGroup>
-          <ButtonSubmit>Entrar</ButtonSubmit>
+          <ButtonSubmit loading={loading.toString()}>Entrar</ButtonSubmit>
         </FormGroup>
         {error ? (
           <Error>

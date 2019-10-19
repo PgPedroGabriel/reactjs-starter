@@ -30,6 +30,7 @@ export default function list(state = INITIAL_STATE, action) {
       });
     case types.LIST_LOADING:
       return produce(state, draft => {
+        draft.data = [];
         draft.loading = true;
         return draft;
       });

@@ -15,8 +15,8 @@ function* startAuth({ email, password }) {
       `/login?email=${email}&password=${password}`
     );
 
-    const { token, userId } = request.data;
-
+    const { token, userId } = request.data ? request.data[0] : null;
+    console.log(request);
     if (!token) {
       yield put(authFail('Email e senha inválidos'));
     } else {
