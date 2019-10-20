@@ -1,39 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaSpinner, FaStopCircle } from 'react-icons/fa';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 import * as AuthActions from '../../store/modules/Auth/actions';
 import history from '../../services/history';
 import {
   Container,
   Header,
   Button,
-  LoginForm,
-  FormGroup,
   ButtonSubmit,
   Loading,
   Error,
 } from './styles';
 
+const schemaValidation = Yup.object().shape({
+  email: Yup.string()
+    .email('Preencha um email válido.')
+    .required('O email é obrigatório'),
+  password: Yup.string()
+    .min(6, 'Informe no mínimo 6 caracteres')
+    .required('Campo obrigatório'),
+});
+
 export default function Auth() {
-  const { loading, error, errorMessage, token, userId } = useSelector(
+  const { loading, error, errorMessage, token } = useSelector(
     state => state.auth
   );
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userId) {
+    if (token) {
       history.push('/');
     }
-  }, [token, userId]);
+  }, [token]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit({ email, password }) {
     dispatch(AuthActions.auth(email, password));
   }
 
@@ -45,7 +49,7 @@ export default function Auth() {
           <Button>Voltar</Button>
         </Link>
       </Header>
-      <LoginForm onSubmit={handleSubmit}>
+      <Form schema={schemaValidation} onSubmit={handleSubmit}>
         {loading ? (
           <Loading>
             <FaSpinner />
@@ -54,31 +58,21 @@ export default function Auth() {
         ) : (
           ''
         )}
-        <FormGroup>
-          <p>E-mail</p>
-          <input
-            placeholder="Ex: devpedrogabriel@gmail.com"
-            type="email"
-            name="email"
-            id="email"
-            onChange={e => setEmail(e.target.value)}
-            value={email}
-          />
-        </FormGroup>
-        <FormGroup>
-          <p>Senha</p>
-          <input
-            placeholder="Senha"
-            type="password"
-            name="password"
-            id="password"
-            onChange={e => setPassword(e.target.value)}
-            value={password}
-          />
-        </FormGroup>
-        <FormGroup>
-          <ButtonSubmit loading={loading.toString()}>Entrar</ButtonSubmit>
-        </FormGroup>
+        <p>E-mail</p>
+        <Input
+          placeholder="Ex: devpedrogabriel@gmail.com"
+          type="text"
+          name="email"
+          id="email"
+        />
+        <p>Senha</p>
+        <Input
+          placeholder="Senha"
+          type="password"
+          name="password"
+          id="password"
+        />
+        <ButtonSubmit loading={loading.toString()}>Entrar</ButtonSubmit>
         {error ? (
           <Error>
             <FaStopCircle />
@@ -87,7 +81,7 @@ export default function Auth() {
         ) : (
           ''
         )}
-      </LoginForm>
+      </Form>
     </Container>
   );
 }

@@ -4,6 +4,34 @@ export const Container = styled.div`
   background: #fff;
   padding: 10px 20px;
   border-radius: 5px;
+
+  form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    text-align: center;
+    max-width: 700px;
+    margin-bottom: 30px;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    input {
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #3f974c;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    span {
+      display: block;
+      color: red;
+      margin: 0 0 10px;
+    }
+  }
 `;
 
 export const Header = styled.div`
@@ -26,30 +54,6 @@ export const Button = styled.button.attrs({
   border: 0;
   border-radius: 5px;
   font-weight: bold;
-`;
-
-export const LoginForm = styled.form`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  text-align: center;
-  max-width: 700px;
-  margin-bottom: 30px;
-`;
-
-export const FormGroup = styled.div`
-  p {
-    margin-bottom: 10px;
-  }
-
-  input {
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #3f974c;
-    padding: 10px 20px;
-    text-align: center;
-  }
 `;
 
 export const ButtonSubmit = styled.button.attrs(props => ({
@@ -77,6 +81,14 @@ export const Loading = styled.div`
   font-size: 15px;
   svg {
     margin-right: 5px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
   }
 `;
 

@@ -21,14 +21,14 @@ function* startAuth({ email, password }) {
       `/login?email=${email}&password=${password}`
     );
 
-    const { token, userId } = request.data ? request.data[0] : null;
+    const { token, ...user } = request.data ? request.data[0] : null;
 
     if (!token) {
       yield put(authFail('Email e senha inválidos'));
     } else {
-      yield localStorage.setItem('token', token);
-      yield localStorage.setItem('userId', userId);
-      yield put(authSuccess(token, userId));
+      // yield localStorage.setItem('token', token);
+      // yield localStorage.setItem('userId', userId);
+      yield put(authSuccess(token, user));
     }
   } catch (error) {
     yield put(authFail('Falha em realizar login, verifique seu login e senha'));
@@ -38,8 +38,6 @@ function* startAuth({ email, password }) {
 function* initLogout() {
   const userId = yield select(state => state.userId);
   if (!userId) {
-    yield localStorage.removeItem('token');
-    yield localStorage.removeItem('userId');
     yield put(logoutSucceed());
   } else {
     yield put(authFail('Você não está logado'));

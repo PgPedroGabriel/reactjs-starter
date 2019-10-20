@@ -22,11 +22,11 @@ export function authStart() {
   };
 }
 
-export function authSuccess(token, userId) {
+export function authSuccess(token, user) {
   return {
     type: types.AUTH_SUCCESS,
     token,
-    userId,
+    user,
   };
 }
 

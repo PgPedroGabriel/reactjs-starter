@@ -8,11 +8,15 @@ pack of things:
 
 - redux
 - redux saga
+- redux persist
 - immer
 - prop-types
 - styled-components
 - axios
 - json-server (developer)
+- @rocketseat/unform
+- yup
+
 
 ### Code styling
 

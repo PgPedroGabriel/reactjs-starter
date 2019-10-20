@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as ListActions from '../../store/modules/List/actions';
-import { logout } from '../../store/modules/Auth/actions';
+import * as ListActions from '~/store/modules/List/actions';
+import { logout } from '~/store/modules/Auth/actions';
 import { Text, Container, List, Button } from './styles';
 
 export default function Main() {
@@ -16,12 +16,12 @@ export default function Main() {
     dispatch(logout());
   }
 
-  const { data, error, loading, userId } = useSelector(state => ({
+  const { data, error, loading, token } = useSelector(state => ({
     ...state.list,
-    userId: state.auth.userId,
+    token: state.auth.token,
   }));
 
-  const showLogin = userId === null;
+  const showLogin = token === null;
 
   return (
     <Container>
@@ -39,7 +39,14 @@ export default function Main() {
           <Button>Login </Button>
         </Link>
       )}
-      {!showLogin && <Button onClick={handleLogout}>Logout</Button>}
+      {!showLogin && (
+        <>
+          <Link to="profile">
+            <Button>Perfil</Button>
+          </Link>
+          <Button onClick={handleLogout}>Logout</Button>
+        </>
+      )}
     </Container>
   );
 }
