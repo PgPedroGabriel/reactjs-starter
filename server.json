@@ -26,6 +26,7 @@
       "id": 1,
       "token": "token:3123",
       "userId": "312",
+      "name": "Pedro Gabriel",
       "email": "devpedrogabriel@gmail.com",
       "password": "123123"
     }
