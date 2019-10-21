@@ -58,14 +58,7 @@ export default function Auth() {
         ) : (
           ''
         )}
-        <p>E-mail</p>
-        <Input
-          placeholder="Ex: devpedrogabriel@gmail.com"
-          type="text"
-          name="email"
-          id="email"
-        />
-        <p>Senha</p>
+        <Input placeholder="E-mail" type="text" name="email" id="email" />
         <Input
           placeholder="Senha"
           type="password"

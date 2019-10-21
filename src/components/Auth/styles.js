@@ -6,9 +6,10 @@ export const Container = styled.div`
   border-radius: 5px;
 
   form {
-    display: block;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
+    flex-direction: column;
     align-items: center;
     text-align: center;
     max-width: 700px;
@@ -60,7 +61,6 @@ export const ButtonSubmit = styled.button.attrs(props => ({
   type: 'submit',
   disabled: props.loading === 'true',
 }))`
-  margin-top: 20px;
   background: #00a5fe;
   color: #fff;
   font-weight: bold;
