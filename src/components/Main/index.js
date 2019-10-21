@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as ListActions from '~/store/modules/List/actions';
@@ -20,6 +21,12 @@ export default function Main() {
     ...state.list,
     token: state.auth.token,
   }));
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Ocorreu uma falha ao se conectar com o servidor');
+    }
+  }, [error]);
 
   const showLogin = token === null;
 

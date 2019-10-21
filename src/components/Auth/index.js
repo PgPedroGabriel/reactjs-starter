@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaSpinner, FaStopCircle } from 'react-icons/fa';
@@ -36,6 +37,12 @@ export default function Auth() {
       history.push('/');
     }
   }, [token]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(errorMessage);
+    }
+  }, [error, errorMessage]);
 
   function handleSubmit({ email, password }) {
     dispatch(AuthActions.auth(email, password));

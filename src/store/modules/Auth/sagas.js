@@ -44,7 +44,20 @@ function* initLogout() {
   }
 }
 
+function setToken({ payload }) {
+  if (!payload) return;
+
+  if (!payload.auth) return;
+
+  const { token } = payload.auth;
+
+  if (!token) return;
+
+  api.defaults.headers.Authorization = `Basic ${token}`;
+}
+
 export default all([
+  takeLatest('persist/REHYDRATE', setToken),
   takeLatest(types.AUTH_USER, startAuth),
   takeLatest(types.AUTH_INITIATE_LOGOUT, initLogout),
 ]);

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 export const Container = styled.div`
   background: #fff;
   padding: 10px 20px;

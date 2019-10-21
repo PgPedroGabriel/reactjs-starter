@@ -9,32 +9,29 @@ const INITIAL_STATE = {
 };
 
 export default function list(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case types.LIST:
-      return produce(state, draft => {
+  return produce(state, draft => {
+    switch (action.type) {
+      case types.LIST: {
         if (action.list) {
           draft.data = action.list;
         }
         draft.loading = false;
-        return draft;
-      });
-    case types.LIST_ERROR:
-      return produce(state, draft => {
+        break;
+      }
+      case types.LIST_ERROR: {
         const { message } = action.error;
         if (message === 'Network Error') {
           draft.error = true;
         }
-
         draft.loading = false;
-        return draft;
-      });
-    case types.LIST_LOADING:
-      return produce(state, draft => {
+        break;
+      }
+      case types.LIST_LOADING: {
         draft.data = [];
         draft.loading = true;
-        return draft;
-      });
-    default:
-      return state;
-  }
+        break;
+      }
+      default:
+    }
+  });
 }

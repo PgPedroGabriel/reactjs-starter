@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 export const Text = styled.h1`
   color: #000;
 `;

@@ -16,6 +16,7 @@ pack of things:
 - json-server (developer)
 - @rocketseat/unform
 - yup
+- toastify
 
 
 ### Code styling
@@ -24,6 +25,7 @@ pack of things:
 - prettier
 - babel
 - editorconfig
+- eslint-import-resolver-babel-plugin-root-import
 
 ## Ok, i'm coding on vscode, what i need to put in this sh*t?
 
